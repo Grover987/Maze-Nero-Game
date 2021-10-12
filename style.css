@@ -1,0 +1,28 @@
+.wall {
+  height: 50px;
+  width: 50px;
+  background-color: blue;
+}
+
+.way {
+  height: 50px;
+  width: 50px;
+  background-color: white;
+}
+
+.player {
+  height: 50px;
+  width: 50px;
+  background-image: url(assets/padoru.png);
+  background-size: cover;
+}
+
+.finish {
+  height: 50px;
+  width: 50px;
+  background-color: black;
+}
+
+.sessao {
+  display: flex;
+}
