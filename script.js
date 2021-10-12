@@ -16,7 +16,7 @@ const map = [
   'WWWWWWWWWWWWWWWWWWWWW'
 ]
 
-const maze = []
+let maze = []
 const main = document.getElementsByTagName('main')
 //player
 let ph = 0
@@ -59,6 +59,8 @@ function mazeCreate() {
   })
 }
 
+mazeCreate()
+
 const player = document.getElementsByClassName('player')
 
 document.addEventListener('keydown', event => {
@@ -71,7 +73,7 @@ document.addEventListener('keydown', event => {
       labirinth.innerHTML = ''
       const win = document.createElement('img')
       win.src = '/assets/win.jpg'
-      document.body.appendChild(win)
+      labirinth.appendChild(win)
     }
 
     if (maze[pv][ph + 1] === ' ') {
@@ -116,6 +118,22 @@ document.addEventListener('keydown', event => {
       mazeCreate()
     }
   }
+})
+
+const reset = document.getElementById('reset')
+reset.addEventListener('click', function () {
+  ph = 0
+  pv = 9
+  maze = []
+  map.forEach(function (arr) {
+    const array = []
+    for (let i = 0; i < arr.length; i++) {
+      array.push(arr[i])
+    }
+    maze.push(array)
+  })
+  labirinth.innerHTML = ''
+  mazeCreate()
 })
 
 myAudio.loop = true
