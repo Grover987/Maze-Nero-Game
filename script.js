@@ -16,8 +16,12 @@ const map = [
   'WWWWWWWWWWWWWWWWWWWWW'
 ]
 
+let keyName = ''
 let maze = []
+let turn = 'right'
 const main = document.getElementsByTagName('main')
+const audio = document.getElementById('bump')
+
 //player
 let ph = 0
 let pv = 9
@@ -50,6 +54,28 @@ function mazeCreate() {
         const player = document.createElement('div')
         player.classList.add('player')
         section.appendChild(player)
+        const playerchar = document.createElement('img')
+        playerchar.setAttribute('id', 'playerchar')
+        player.appendChild(playerchar)
+        if (turn === 'left') {
+          playerchar.src = 'assets/padoru2.png'
+        } else {
+          playerchar.src = 'assets/padoru.png'
+        }
+
+        if (keyName === 'ArrowRight') {
+          if (maze[pv][ph + 1] === ' ') {
+            playerchar.classList.add('right')
+          }
+        } else if (keyName === 'ArrowLeft') {
+          if (maze[pv][ph + 1] === ' ') {
+            playerchar.classList.add('left')
+          }
+        } else if (keyName === 'ArrowUp') {
+          playerchar.classList.add('up')
+        } else if (keyName === 'ArrowDown') {
+          playerchar.classList.add('down')
+        }
       } else if (arr[i] === 'F') {
         const finish = document.createElement('div')
         finish.classList.add('finish')
@@ -64,10 +90,10 @@ mazeCreate()
 const player = document.getElementsByClassName('player')
 
 document.addEventListener('keydown', event => {
-  const keyName = event.key
-  console.log('keydown event\n\n' + 'key: ' + keyName)
+  keyName = event.key
 
   if (keyName === 'ArrowRight') {
+    turn = 'right'
     if (maze[pv][ph + 1] === 'F') {
       const labirinth = document.getElementById('maze')
       labirinth.innerHTML = ''
@@ -81,12 +107,19 @@ document.addEventListener('keydown', event => {
       maze[pv][ph + 1] = 'S'
       ph += 1
       const labirinth = document.getElementById('maze')
+      let char = document.getElementById('playerchar')
+      char.classList.add('right')
       labirinth.innerHTML = ''
       mazeCreate()
+    } else if (maze[pv][ph + 1] === 'W') {
+      labirinth.innerHTML = ''
+      mazeCreate()
+      audio.play()
     }
   }
 
   if (keyName === 'ArrowLeft') {
+    turn = 'left'
     if (maze[pv][ph - 1] === ' ') {
       maze[pv][ph] = ' '
       maze[pv][ph - 1] = 'S'
@@ -94,6 +127,10 @@ document.addEventListener('keydown', event => {
       const labirinth = document.getElementById('maze')
       labirinth.innerHTML = ''
       mazeCreate()
+    } else if (maze[pv][ph - 1] === 'W') {
+      labirinth.innerHTML = ''
+      mazeCreate()
+      audio.play()
     }
   }
 
@@ -105,6 +142,8 @@ document.addEventListener('keydown', event => {
       const labirinth = document.getElementById('maze')
       labirinth.innerHTML = ''
       mazeCreate()
+    } else if (maze[pv - 1][ph] === 'W') {
+      audio.play()
     }
   }
 
@@ -116,6 +155,9 @@ document.addEventListener('keydown', event => {
       const labirinth = document.getElementById('maze')
       labirinth.innerHTML = ''
       mazeCreate()
+    }
+    if (maze[pv + 1][ph] === 'W') {
+      audio.play()
     }
   }
 })
@@ -136,5 +178,9 @@ reset.addEventListener('click', function () {
   mazeCreate()
 })
 
-myAudio.loop = true
-document.getElementById('myAudio').play()
+function music() {
+  myAudio.loop = true
+  document.getElementById('myAudio').play()
+  myAudio.volume = 0.2
+}
+music()

@@ -1,28 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  font-size: 40px;
+  font-family: monospace;
+  background-color: red;
+  font-weight: 600;
+  padding: 10px;
+}
+main {
+  text-align: center;
+  background-image: url(./assets/wewill.jpg);
+  background-size: cover;
+}
+
 .wall {
   height: 50px;
   width: 50px;
-  background-color: blue;
+  background-image: url(./assets/istockphoto-1169144514-170667a.jpg);
 }
 
 .way {
   height: 50px;
   width: 50px;
-  background-color: white;
+  background-color: rgb(79, 204, 241);
 }
 
 .player {
   height: 50px;
   width: 50px;
-  background-image: url(assets/padoru.png);
-  background-size: cover;
+  background-color: rgb(79, 204, 241);
+}
+
+#playerchar {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(79, 204, 241);
+}
+
+.right {
+  animation-name: slideright;
+  animation-duration: 0.8s;
+}
+
+.left {
+  animation-name: slideleft;
+  animation-duration: 0.8s;
+}
+
+.block {
+  animation-duration: 0s;
+}
+
+.up {
+  animation-name: slideup;
+  animation-duration: 0.8s;
+}
+
+.down {
+  animation-name: slidedown;
+  animation-duration: 0.8s;
 }
 
 .finish {
   height: 50px;
   width: 50px;
-  background-color: black;
+  background-image: url(./assets/quartz.png);
+  background-size: cover;
 }
 
 .sessao {
   display: flex;
+  justify-content: center;
+}
+
+#reset {
+  padding: 20px;
+  font-size: 29px;
+  color: red;
+  font-family: fantasy;
+  background-color: green;
+  margin: 30px;
+}
+
+#maze {
+  border: 30px solid black;
+  max-width: fit-content;
+  margin: 0 auto;
+}
+
+@keyframes slideright {
+  from {
+    transform: translateX(-50px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideleft {
+  from {
+    transform: translateX(50px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideup {
+  from {
+    transform: translateY(50px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slidedown {
+  from {
+    transform: translateY(-50px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
 }
