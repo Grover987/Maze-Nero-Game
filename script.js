@@ -64,11 +64,11 @@ function mazeCreate() {
         }
 
         if (keyName === 'ArrowRight') {
-          if (maze[pv][ph + 1] === ' ') {
+          if (maze[pv][ph - 1] !== 'W') {
             playerchar.classList.add('right')
           }
         } else if (keyName === 'ArrowLeft') {
-          if (maze[pv][ph + 1] === ' ') {
+          if (maze[pv][ph + 1] !== 'W') {
             playerchar.classList.add('left')
           }
         } else if (keyName === 'ArrowUp') {
@@ -105,8 +105,8 @@ document.addEventListener('keydown', event => {
     if (maze[pv][ph + 1] === ' ') {
       maze[pv][ph] = ' '
       maze[pv][ph + 1] = 'S'
-      ph += 1
       const labirinth = document.getElementById('maze')
+      ph += 1
       let char = document.getElementById('playerchar')
       char.classList.add('right')
       labirinth.innerHTML = ''
